@@ -2,7 +2,7 @@ package com.chen.datasynchro.dataSource;
 
 /**
  * <p>
- *  存储当前线程的数据源名称
+ *  数据源名称上下文
  * </p>
  *
  * @author：MaybeBin
