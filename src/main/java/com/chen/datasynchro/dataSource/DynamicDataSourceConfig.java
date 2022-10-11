@@ -23,7 +23,7 @@ import java.util.Map;
  * @Date: 2022-10-11 11-13
  */
 @Configuration
-@PropertySource("classpath:db.properties")
+@PropertySource("classpath:datasource.properties")
 @MapperScan(basePackages = "com.chen.datasynchro.mapper")
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 public class DynamicDataSourceConfig {
