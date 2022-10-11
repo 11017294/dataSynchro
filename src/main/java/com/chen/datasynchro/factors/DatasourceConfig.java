@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  * @Date: 2022-10-10 14-52
  */
 @Configuration
-@PropertySource("classpath:db.properties")
+@PropertySource("classpath:datasource.properties")
 public class DatasourceConfig {
 
     @Bean("master")
