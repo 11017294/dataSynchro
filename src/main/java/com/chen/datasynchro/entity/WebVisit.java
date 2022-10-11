@@ -1,4 +1,4 @@
-package com.chen.datasynchro.entity.slave;
+package com.chen.datasynchro.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @TableName("T_WEB_VISIT")
-public class SlaveWebVisit extends Model {
+public class WebVisit extends Model {
 
     private static final long serialVersionUID = 1L;
 
