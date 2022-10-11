@@ -1,13 +1,12 @@
 package com.chen.datasynchro.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chen.datasynchro.entity.master.MasterWebVisit;
 import com.chen.datasynchro.entity.slave.SlaveWebVisit;
 import com.chen.datasynchro.mapper.master.MasterWebVisitMapper;
 import com.chen.datasynchro.mapper.slave.SlaveWebVisitMapper;
 import com.chen.datasynchro.service.WebVisitService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,11 +28,24 @@ public class WebVisitServiceImpl implements WebVisitService {
     private SlaveWebVisitMapper slaveWebVisitMapper;
 
     public void test(){
-        List<MasterWebVisit> masterWebVisit = masterWebVisitMapper.selectList(new QueryWrapper<>());
-        List<SlaveWebVisit> slaveWebVisits = BeanUtil.copyToList(masterWebVisit, SlaveWebVisit.class);
+        List<MasterWebVisit> masterWebVisitList = masterWebVisitList();
+        List<SlaveWebVisit> slaveWebVisitList = slaveWebVisitList();
 
-        for (SlaveWebVisit slaveWebVisit : slaveWebVisits) {
-            slaveWebVisit.insert();
-        }
+        System.out.println("masterWebVisitList:" + masterWebVisitList.size());
+        System.out.println("slaveWebVisitList:" + slaveWebVisitList.size());
+
+//        List<SlaveWebVisit> slaveWebVisits = BeanUtil.copyToList(masterWebVisitList, SlaveWebVisit.class);
+//        for (SlaveWebVisit slaveWebVisit : slaveWebVisits) {
+//            slaveWebVisit.insert();
+//        }
+    }
+
+    @Transactional
+    public List<MasterWebVisit> masterWebVisitList(){
+        return masterWebVisitMapper.selectList(null);
+    }
+
+    public List<SlaveWebVisit> slaveWebVisitList(){
+        return slaveWebVisitMapper.selectList(null);
     }
 }

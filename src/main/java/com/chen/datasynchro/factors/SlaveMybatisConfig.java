@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 /**
  * <p>
- *
+ *  设置slave数据源
  * </p>
  *
  * @author：MaybeBin

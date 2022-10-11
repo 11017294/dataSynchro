@@ -10,14 +10,14 @@ import javax.sql.DataSource;
 
 /**
  * <p>
- *
+ *   创建数据源Bean
  * </p>
  *
  * @author：MaybeBin
  * @Date: 2022-10-10 14-52
  */
 @Configuration
-@PropertySource("classpath:datasource.properties")
+@PropertySource("classpath:db.properties")
 public class DatasourceConfig {
 
     @Bean("master")

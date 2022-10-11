@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 /**
  * <p>
- *
+ *  设置master数据源
  * </p>
  *
  * @author：MaybeBin
