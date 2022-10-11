@@ -4,7 +4,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
  * <p>
- *  获取数据源
+ *  获取数据源的路由策略
  * </p>
  *
  * @author：MaybeBin

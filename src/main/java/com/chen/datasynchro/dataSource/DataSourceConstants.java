@@ -2,7 +2,7 @@ package com.chen.datasynchro.dataSource;
 
 /**
  * <p>
- *
+ *  数据源常量
  * </p>
  *
  * @author：MaybeBin
