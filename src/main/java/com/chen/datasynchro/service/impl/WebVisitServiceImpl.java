@@ -1,12 +1,14 @@
 package com.chen.datasynchro.service.impl;
 
-import com.chen.datasynchro.entity.master.MasterWebVisit;
-import com.chen.datasynchro.entity.slave.SlaveWebVisit;
-import com.chen.datasynchro.mapper.master.MasterWebVisitMapper;
-import com.chen.datasynchro.mapper.slave.SlaveWebVisitMapper;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chen.datasynchro.dataSource.DataSourceConstants;
+import com.chen.datasynchro.dataSource.DynamicDataSourceContextHolder;
+import com.chen.datasynchro.entity.WebVisit;
+import com.chen.datasynchro.mapper.WebVisitMapper;
 import com.chen.datasynchro.service.WebVisitService;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,29 +25,59 @@ import java.util.List;
 public class WebVisitServiceImpl implements WebVisitService {
 
     @Resource
-    private MasterWebVisitMapper masterWebVisitMapper;
-    @Resource
-    private SlaveWebVisitMapper slaveWebVisitMapper;
+    private WebVisitMapper webVisitMapper;
 
     public void test(){
-        List<MasterWebVisit> masterWebVisitList = masterWebVisitList();
-        List<SlaveWebVisit> slaveWebVisitList = slaveWebVisitList();
+//        new Thread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                zhu();
+//            }
+//        }).start();
+//        new Thread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                fu();
+//            }
+//        }).start();
 
-        System.out.println("masterWebVisitList:" + masterWebVisitList.size());
-        System.out.println("slaveWebVisitList:" + slaveWebVisitList.size());
+        int initSize = 2;
+        //默认master查询
+        List<WebVisit> resultDataMaster = webVisitMapper.selectList(new QueryWrapper<>());
 
-//        List<SlaveWebVisit> slaveWebVisits = BeanUtil.copyToList(masterWebVisitList, SlaveWebVisit.class);
-//        for (SlaveWebVisit slaveWebVisit : slaveWebVisits) {
-//            slaveWebVisit.insert();
-//        }
+        //切换数据源，在slave查询
+        DynamicDataSourceContextHolder.setContextKey(DataSourceConstants.DS_KEY_SLAVE);
+        List<WebVisit> resultDataSlave = webVisitMapper.selectList(null);
+        System.out.println("resultDataMaster：" + resultDataMaster.size());
+        System.out.println("resultDataSlave：" + resultDataSlave.size());
+        //恢复数据源
+        DynamicDataSourceContextHolder.removeContextKey();
     }
 
-    @Transactional
-    public List<MasterWebVisit> masterWebVisitList(){
-        return masterWebVisitMapper.selectList(null);
+    @SneakyThrows
+    private void zhu(){
+        System.out.println("zhu");
+        Thread.sleep(1000);
+        DynamicDataSourceContextHolder.setContextKey(DataSourceConstants.DS_KEY_MASTER);
+        List<WebVisit> list = query();
+        int size = list.size();
+        Thread.sleep(2000);
+        System.out.println("zhu:" + size);
     }
 
-    public List<SlaveWebVisit> slaveWebVisitList(){
-        return slaveWebVisitMapper.selectList(null);
+    @SneakyThrows
+    private void fu(){
+        System.out.println("fu");
+        DynamicDataSourceContextHolder.setContextKey(DataSourceConstants.DS_KEY_SLAVE);
+        Thread.sleep(2000);
+        List<WebVisit> list = query();
+        int size = list.size();
+        System.out.println("fu:" + size);
+    }
+
+    private List<WebVisit> query(){
+        return webVisitMapper.selectList(null);
     }
 }

@@ -1,10 +1,10 @@
 # 工程简介
-    项目使用了多数据源
-    每个数据源单独使用一套代码
-    缺点1：多套数据源的代码逻辑一致,造成了代码存在一定的冗余，缺乏灵活性
-    缺点2：@Transactional不能实现跨库事务
-        方法中涉及多个数据库的操作时，会出现错误：`No qualifying bean of type 'org.springframework.transaction.TransactionManager' available`
-        单独操作数据库的方法可加@Transactional
+    项目中使用了多个数据源。
+    通过方法动态的切换数据源，从而到达多个数据库来回切换的目的
+
+# 注意事项
+    Spring @Transactional不支持跨数据源事物，Spring 事物控制是基于数据库链接进行的，当数据源切换后，数据库链接切换，事物回滚只能回退，当前持有的链接
+    Spring开启事物后，会将当前数据库及数据库链接资源进行线程绑定，导致数据源切换失效（数据源切换执行后，并未获取到新的数据库链接）
 
 # 延伸阅读
 
