@@ -28,22 +28,9 @@ public class WebVisitServiceImpl implements WebVisitService {
     private WebVisitMapper webVisitMapper;
 
     public void test(){
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                zhu();
-//            }
-//        }).start();
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                fu();
-//            }
-//        }).start();
+        new Thread(() -> zhu()).start();
+        new Thread(() -> fu()).start();
 
-        int initSize = 2;
         //默认master查询
         List<WebVisit> resultDataMaster = webVisitMapper.selectList(new QueryWrapper<>());
 
