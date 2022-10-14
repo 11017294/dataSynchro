@@ -2,8 +2,11 @@
 server:
   port: 8080
 
-# 应用名称
 spring:
+  profiles:
+    # 添加其他的配置文件
+    active: datasource
+  # 应用名称
   application:
     name: dataSynchro
   #  profiles:
@@ -14,9 +17,7 @@ spring:
     time-zone: GMT+8
 
 #下面这些内容是为了让MyBatis映射
-#指定Mybatis的Mapper文件
-mybatis:
-  mapper-locations: classpath:com/chen/datasynchro/mapper/*/xml/*.xml
+mybatis-plus:
   #指定Mybatis的实体目录
   type-aliases-package: com.chen.datasynchro.entity
   global-config:
@@ -27,8 +28,3 @@ mybatis:
   configuration:
     # 打印sql日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
-
-
-

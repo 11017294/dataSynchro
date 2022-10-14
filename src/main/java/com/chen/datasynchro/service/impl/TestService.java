@@ -1,11 +1,12 @@
 package com.chen.datasynchro.service.impl;
 
-import com.chen.datasynchro.dataSource.DataSourceConstants;
-import com.chen.datasynchro.dataSource.annotion.DataSource;
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chen.datasynchro.entity.WebVisit;
 import com.chen.datasynchro.mapper.WebVisitMapper;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -26,28 +27,28 @@ public class TestService {
     @Resource
     private WebVisitMapper webVisitMapper;
 
-    @SneakyThrows
-    @DataSource
+    @Transactional(propagation = Propagation.REQUIRED)
+    @DS("localOracle")
     public void zhu(){
         System.out.println("zhu");
         List<WebVisit> list = query();
-        int size = list.size();
-        System.out.println("zhu:" + size);
         insert(list.get(0));
     }
 
-    @SneakyThrows
-    @DataSource(DataSourceConstants.DS_KEY_SLAVE)
+    @Transactional(propagation = Propagation.REQUIRED)
+    @DS("remoteOracle")
     public void fu(){
         System.out.println("fu");
         List<WebVisit> list = query();
-        int size = list.size();
-        System.out.println("fu:" + size);
         insert(list.get(0));
+        int i = 1 / 0;
     }
 
     private List<WebVisit> query(){
-        return webVisitMapper.selectList(null);
+        Page<WebVisit> page = new Page<>();
+        page.setSize(5);
+        page.setCurrent(1);
+        return webVisitMapper.selectPage(page,null).getRecords();
     }
 
     public void insert(WebVisit webVisit){
@@ -56,6 +57,6 @@ public class TestService {
         webVisit.setId(id.substring(0, 32));
         webVisit.setCreateTime(new Date());
         webVisit.setUpdateTime(new Date());
-//        webVisit.insert();
+        webVisit.insert();
     }
 }

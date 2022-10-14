@@ -23,7 +23,7 @@ public class WebVisit extends Model {
     /**
      * 主键
      */
-    @TableId(value = "ID", type = IdType.UUID)
+    @TableId(value = "ID", type = IdType.ASSIGN_UUID)
     private String id;
 
     /**

@@ -22,8 +22,8 @@ public class WebVisitServiceImpl implements WebVisitService {
     public void test(){
 //        new Thread(() -> { testService.zhu(); }).start();
 //        new Thread(() -> { testService.fu(); }).start();
-        testService.fu();
         testService.zhu();
+        testService.fu();
     }
 
 }

@@ -2,6 +2,7 @@ package com.chen.datasynchro.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chen.datasynchro.entity.WebVisit;
+import org.apache.ibatis.annotations.Delete;
 
 
 /**
