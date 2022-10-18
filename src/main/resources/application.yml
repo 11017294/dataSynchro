@@ -14,9 +14,7 @@ spring:
     time-zone: GMT+8
 
 #下面这些内容是为了让MyBatis映射
-#指定Mybatis的Mapper文件
 mybatis:
-  mapper-locations: classpath:com/chen/datasynchro/mapper/*/xml/*.xml
   #指定Mybatis的实体目录
   type-aliases-package: com.chen.datasynchro.entity
   global-config:
@@ -27,8 +25,4 @@ mybatis:
   configuration:
     # 打印sql日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
-
-
 

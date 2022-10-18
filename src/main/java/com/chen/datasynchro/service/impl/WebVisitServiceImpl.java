@@ -34,10 +34,6 @@ public class WebVisitServiceImpl implements WebVisitService {
         System.out.println("masterWebVisitList:" + masterWebVisitList.size());
         System.out.println("slaveWebVisitList:" + slaveWebVisitList.size());
 
-//        List<SlaveWebVisit> slaveWebVisits = BeanUtil.copyToList(masterWebVisitList, SlaveWebVisit.class);
-//        for (SlaveWebVisit slaveWebVisit : slaveWebVisits) {
-//            slaveWebVisit.insert();
-//        }
     }
 
     @Transactional

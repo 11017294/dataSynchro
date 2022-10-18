@@ -22,8 +22,8 @@ public class Knife4jConfiguration {
     public Docket defaultApi2() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
-                        .title("数据同步")
-                        .description("数据同步APIs")
+                        .title("多数据源的搭建")
+                        .description("编写多套数据源")
                         .version("1.0")
                         .build())
                 //分组名称

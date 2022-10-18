@@ -11,6 +11,6 @@ package com.chen.datasynchro.service;
  */
 public interface WebVisitService {
 
-    public void test();
+    void test();
 
 }
