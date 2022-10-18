@@ -1,6 +1,5 @@
 package com.chen.datasynchro.dataSource;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -24,7 +23,6 @@ import java.util.Map;
  */
 @Configuration
 @PropertySource("classpath:datasource.properties")
-@MapperScan(basePackages = "com.chen.datasynchro.mapper")
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 public class DynamicDataSourceConfig {
 
