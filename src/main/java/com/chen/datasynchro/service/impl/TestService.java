@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chen.datasynchro.entity.WebVisit;
 import com.chen.datasynchro.mapper.WebVisitMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -27,15 +25,15 @@ public class TestService {
     @Resource
     private WebVisitMapper webVisitMapper;
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @DS("localOracle")
     public void zhu(){
         System.out.println("zhu");
         List<WebVisit> list = query();
         insert(list.get(0));
+        int i = 1 / 0;
+
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @DS("remoteOracle")
     public void fu(){
         System.out.println("fu");
