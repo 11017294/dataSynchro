@@ -2,6 +2,7 @@ package com.chen.datasynchro.service.impl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chen.datasynchro.constants.DataSourceConstants;
 import com.chen.datasynchro.entity.WebVisit;
 import com.chen.datasynchro.mapper.WebVisitMapper;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,17 @@ public class TestService {
     @Resource
     private WebVisitMapper webVisitMapper;
 
-    @DS("localOracle")
+    @DS(DataSourceConstants.DS_KEY_LOCAL)
     public void zhu(){
-        System.out.println("zhu");
+        System.out.println(DataSourceConstants.DS_KEY_LOCAL);
         List<WebVisit> list = query();
         insert(list.get(0));
         int i = 1 / 0;
-
     }
 
-    @DS("remoteOracle")
+    @DS(DataSourceConstants.DS_KEY_REMOTE)
     public void fu(){
-        System.out.println("fu");
+        System.out.println(DataSourceConstants.DS_KEY_REMOTE);
         List<WebVisit> list = query();
         insert(list.get(0));
         int i = 1 / 0;
