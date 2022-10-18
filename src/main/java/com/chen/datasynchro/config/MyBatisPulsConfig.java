@@ -6,15 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
  * @author：MaybeBin
  * @date: 2022-01-25 09:30
  */
-@MapperScan("com.chen.notes_web.mapper*")
-@EnableTransactionManagement
+@MapperScan("com.chen.datasynchro.mapper")
 @Configuration
 public class MyBatisPulsConfig {
 

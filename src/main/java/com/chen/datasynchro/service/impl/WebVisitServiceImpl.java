@@ -31,15 +31,15 @@ public class WebVisitServiceImpl implements WebVisitService {
         new Thread(() -> zhu()).start();
         new Thread(() -> fu()).start();
 
-        //默认master查询
+        // 默认master查询
         List<WebVisit> resultDataMaster = webVisitMapper.selectList(new QueryWrapper<>());
 
-        //切换数据源，在slave查询
+        // 切换数据源，在slave查询
         DynamicDataSourceContextHolder.setContextKey(DataSourceConstants.DS_KEY_SLAVE);
         List<WebVisit> resultDataSlave = webVisitMapper.selectList(null);
         System.out.println("resultDataMaster：" + resultDataMaster.size());
         System.out.println("resultDataSlave：" + resultDataSlave.size());
-        //恢复数据源
+        // 恢复数据源
         DynamicDataSourceContextHolder.removeContextKey();
     }
 
